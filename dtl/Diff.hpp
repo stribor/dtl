@@ -219,7 +219,7 @@ namespace dtl {
                 shunk.clear();
             }
             
-            sequence patchedSeq(seqLst.begin(), seqLst.end());
+            sequence patchedSeq = makeSequence(seqLst.begin(), seqLst.end());
             return patchedSeq;
         }
         
@@ -246,7 +246,7 @@ namespace dtl {
                     break;
                 }
             }
-            sequence patchedSeq(seqLst.begin(), seqLst.end());
+            sequence patchedSeq = makeSequence(seqLst.begin(), seqLst.end());
             return patchedSeq;
         }
         
