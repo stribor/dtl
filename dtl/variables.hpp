@@ -123,19 +123,30 @@ namespace dtl {
         long long inc_dec_count;     // count of increace and decrease
     };
 
-#define dtl_typedefs(elem, sequence)                                    \
-    typedef pair< elem, elemInfo >            sesElem;                  \
-    typedef vector< sesElem >                 sesElemVec;               \
-    typedef vector< uniHunk< sesElem > >      uniHunkVec;               \
-    typedef list< elem >                      elemList;                 \
-    typedef vector< elem >                    elemVec;                  \
-    typedef typename uniHunkVec::iterator     uniHunkVec_iter;          \
-    typedef typename sesElemVec::iterator     sesElemVec_iter;          \
-    typedef typename elemList::iterator       elemList_iter;            \
-    typedef typename sequence::iterator       sequence_iter;            \
-    typedef typename sequence::const_iterator sequence_const_iter;      \
-    typedef typename elemVec::iterator        elemVec_iter;             \
-    typedef typename sequence::size_type      size_t;
+#define dtl_typedefs(elem, sequence)                                              \
+    typedef pair< elem, elemInfo >            sesElem;                            \
+    typedef vector< sesElem >                 sesElemVec;                         \
+    typedef vector< uniHunk< sesElem > >      uniHunkVec;                         \
+    typedef list< elem >                      elemList;                           \
+    typedef vector< elem >                    elemVec;                            \
+    typedef typename uniHunkVec::iterator     uniHunkVec_iter;                    \
+    typedef typename sesElemVec::iterator     sesElemVec_iter;                    \
+    typedef typename elemList::iterator       elemList_iter;                      \
+    typedef typename sequence::iterator       sequence_iter;                      \
+    typedef typename sequence::const_iterator sequence_const_iter;                \
+    typedef typename elemVec::iterator        elemVec_iter;                       \
+    typedef typename sequence::size_type      size_t;                             \
+    /**                                                                           \
+     * make sequence from content of between 2 iterators                          \
+     */                                                                           \
+    template <typename T_iter>                                                    \
+    sequence makeSequence (T_iter first, T_iter last) {                           \
+        if constexpr (std::is_constructible_v<sequence, T_iter, T_iter>) {        \
+            return sequence(first, last);                                         \
+        } else if constexpr (std::is_constructible_v<sequence, elem *, size_t>) { \
+            return sequence(&first[0], distance(first, last));                    \
+        }                                                                         \
+    }
 
 
 }

@@ -646,8 +646,8 @@ namespace dtl {
                 }
                 
                 // nontrivial difference
-                sequence A_(A.begin() + (size_t)x_idx - 1, A.end());
-                sequence B_(B.begin() + (size_t)y_idx - 1, B.end());
+                sequence A_ = makeSequence(A.begin() + (size_t)x_idx - 1, A.end());
+                sequence B_ = makeSequence(B.begin() + (size_t)y_idx - 1, B.end());
                 A        = A_;
                 B        = B_;
                 M        = distance(A.begin(), A.end());

@@ -198,7 +198,7 @@ namespace dtl {
                 addDecentSequence(ba_end, ba_it, seq);
             }
             
-            sequence mergedSeq(seq.begin(), seq.end());
+            sequence mergedSeq = makeSequence(seq.begin(), seq.end());
             return mergedSeq;
         }
         
